@@ -4,12 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab Six: Practice 2</title>
+    <button onclick="location.href='index.html'" style="color: lightcoral;">Back to Index</button>
+    <button onclick="light_mode_toggle()" style="color: lightcoral;">Toggle Light Mode</button>
 </head>
 
-<body>
+<body style="background-color: black; color: white;">
     <!-- Create a web page that has a paragraph with some dummy text. Near the paragraph, have a text
 field to accept RGB values to form any colors for the paragraph and the border. You also need to
 control the width of the border. -->
+    <p id="customParagraph" style="border: 2px solid white; padding: 10px; width: fit-content;">
+        This is a paragraph with a customizable border and text color. You can change the colors and border width using the input fields below.
+    </p>
+
+    <div>
+        <label for="textColor">Text Color (RGB): </label>
+        <input type="text" id="textColor" placeholder="255,0,0" oninput="updateStyles()">
+        <br><br>
+        <label for="borderColor">Border Color (RGB): </label>
+        <input type="text" id="borderColor" placeholder="0,255,0" oninput="updateStyles()">
+        <br><br>
+        <label for="borderWidth">Border Width (px): </label>
+        <input type="number" id="borderWidth" placeholder="5" oninput="updateStyles()">
+    </div>
+
+    <script>
+        const defaults = {
+            textColor: '255,255,255',
+            borderColor: '255,255,255',
+            borderWidth: '2'
+        };
+
+        function isValidRGB(rgb) {
+            if (!rgb) return false;
+            const values = rgb.split(',').map(v => v.trim());
+            if (values.length !== 3) return false;
+            return values.every(v => {
+                const num = parseInt(v);
+                return !isNaN(num) && num >= 0 && num <= 255;
+            });
+        }
+
+        function isValidBorderWidth(width) {
+            const num = parseInt(width);
+            return !isNaN(num) && num > 0;
+        }
+
+        function updateStyles() {
+            const textColorInput = document.getElementById('textColor');
+            const borderColorInput = document.getElementById('borderColor');
+            const borderWidthInput = document.getElementById('borderWidth');
+
+            const paragraph = document.getElementById('customParagraph');
+
+            // Text color
+            if (isValidRGB(textColorInput.value)) {
+                paragraph.style.color = `rgb(${textColorInput.value})`;
+            } else {
+                paragraph.style.color = `rgb(${defaults.textColor})`;
+            }
+
+            // Border color
+            if (isValidRGB(borderColorInput.value)) {
+                paragraph.style.borderColor = `rgb(${borderColorInput.value})`;
+            } else {
+                paragraph.style.borderColor = `rgb(${defaults.borderColor})`;
+            }
+
+            // Border width
+            if (isValidBorderWidth(borderWidthInput.value)) {
+                paragraph.style.borderWidth = `${borderWidthInput.value}px`;
+            } else {
+                paragraph.style.borderWidth = `${defaults.borderWidth}px`;
+            }
+        }
+
+        sessionStorage.setItem('lightMode', false);
+        const lightMode = sessionStorage.getItem('lightMode') === 'true';
+        function light_mode_toggle() {
+            if (lightMode) {
+                document.body.style.backgroundColor = "Black";
+                document.body.style.color = "White";
+                document.querySelectorAll("button").forEach(button => {
+                    button.style.color = "lightcoral";
+                });
+            } else {
+                document.body.style.backgroundColor = "White";
+                document.body.style.color = "Black";
+                document.querySelectorAll("button").forEach(button => {
+                    button.style.color = "teal";
+                });
+            }
+            lightMode = !lightMode;
+        }
+    </script>
 </body>
 
 </html>
