@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Six: Practice 1</title>
+    <button onclick="location.href='index.html'" style="color: lightcoral;">Back to Index</button>
+    <button onclick="light_mode_toggle()" style="color: lightcoral;">Toggle Light Mode</button>
+    
+</head>
+
+<body style="background-color: black; color: white;">
+
+    <br> <br>
+    <img src="i804j427.jpg" alt="Isaiah Jenks" width="200" height="200">
+    <div>
+        <h3>Name: Isaiah Jenks</h3>
+        <h3>Contact: idjenks@ku.edu</h3>
+        <br>
+        <p>Major: Computer Engineering</p>
+        <p>Skills: C++, HTML/CSS, JavaScript</p>
+        <p>Education: University of Kansas: Junior</p>
+        <p>Experience: Two years of experience at Batteries Plus: Solving customer problems related to batteries and electronics</p>
+        <p>Interests: Quantum Computing, Embedded Systems, and Circuit Theory</p>
+    </div>
+
+    <br> <br>
+    <p>Here's my favorite YouTube video!</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OC7sNfNuTNU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <script>
+        lightMode = false;
+        function light_mode_toggle() {
+            if (lightMode) {
+                document.body.style.backgroundColor = "Black";
+                document.body.style.color = "White";
+                document.querySelectorAll("button").forEach(button => {
+                    button.style.color = "lightcoral";
+                });
+            } else {
+                document.body.style.backgroundColor = "White";
+                document.body.style.color = "Black";
+                document.querySelectorAll("button").forEach(button => {
+                    button.style.color = "teal";
+                });
+            }
+            lightMode = !lightMode;
+        }
+    </script>
+</body>
+
+</html>
