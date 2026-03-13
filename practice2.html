@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="UTF-8">
     <title>Lab Six: Practice 2</title>
-    <button onclick="location.href='index.html'" style="color: lightcoral;">Back to Index</button>
-    <button onclick="light_mode_toggle()" style="color: lightcoral;">Toggle Light Mode</button>
+    <script src="lightMode.js"></script>
+
+    <button onclick="location.href='index.html'">Back to Index</button>
+    <button onclick="light_mode_toggle()">Toggle Light Mode</button>
 </head>
 
-<body style="background-color: black; color: white;">
-    <!-- Create a web page that has a paragraph with some dummy text. Near the paragraph, have a text
-field to accept RGB values to form any colors for the paragraph and the border. You also need to
-control the width of the border. -->
-    <p id="customParagraph" style="border: 2px solid white; padding: 10px; width: fit-content;">
+<body>
+    <!--
+        Create a web page that has a paragraph with some dummy text. Near the paragraph, have a text
+        field to accept RGB values to form any colors for the paragraph and the border. You also need to
+        control the width of the border.
+    -->
+    <p id="customParagraph" style="border: 2px solid; padding: 10px; width: 800px;">
         This is a paragraph with a customizable border and text color. You can change the colors and border width using the input fields below.
     </p>
 
@@ -28,11 +33,6 @@ control the width of the border. -->
     </div>
 
     <script>
-        const defaults = {
-            textColor: '255,255,255',
-            borderColor: '255,255,255',
-            borderWidth: '2'
-        };
 
         function isValidRGB(rgb) {
             if (!rgb) return false;
@@ -50,6 +50,8 @@ control the width of the border. -->
         }
 
         function updateStyles() {
+            const defaultBorderWidth = 2;
+
             const textColorInput = document.getElementById('textColor');
             const borderColorInput = document.getElementById('borderColor');
             const borderWidthInput = document.getElementById('borderWidth');
@@ -60,42 +62,24 @@ control the width of the border. -->
             if (isValidRGB(textColorInput.value)) {
                 paragraph.style.color = `rgb(${textColorInput.value})`;
             } else {
-                paragraph.style.color = `rgb(${defaults.textColor})`;
+                paragraph.style.color = `rgb(${getComputedStyle(paragraph).color})`;
             }
 
             // Border color
             if (isValidRGB(borderColorInput.value)) {
                 paragraph.style.borderColor = `rgb(${borderColorInput.value})`;
             } else {
-                paragraph.style.borderColor = `rgb(${defaults.borderColor})`;
+                paragraph.style.borderColor = `rgb(${getComputedStyle(paragraph).borderColor})`;
             }
 
             // Border width
             if (isValidBorderWidth(borderWidthInput.value)) {
                 paragraph.style.borderWidth = `${borderWidthInput.value}px`;
             } else {
-                paragraph.style.borderWidth = `${defaults.borderWidth}px`;
+                paragraph.style.borderWidth = `${defaultBorderWidth}px`;
             }
         }
 
-        sessionStorage.setItem('lightMode', false);
-        const lightMode = sessionStorage.getItem('lightMode') === 'true';
-        function light_mode_toggle() {
-            if (lightMode) {
-                document.body.style.backgroundColor = "Black";
-                document.body.style.color = "White";
-                document.querySelectorAll("button").forEach(button => {
-                    button.style.color = "lightcoral";
-                });
-            } else {
-                document.body.style.backgroundColor = "White";
-                document.body.style.color = "Black";
-                document.querySelectorAll("button").forEach(button => {
-                    button.style.color = "teal";
-                });
-            }
-            lightMode = !lightMode;
-        }
     </script>
 </body>
 

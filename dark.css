@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+button {
+    color: lightcoral;
+}
+a:link {
+    color: lightcoral;
+}
+a:visited {
+    color:teal;
+}
+a:hover {
+    color: red;
+}

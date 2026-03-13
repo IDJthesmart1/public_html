@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab Six: Practice 4</title>
+    <button onclick="location.href='index.html'">Back to Index</button>
+    <button onclick="light_mode_toggle()">Toggle Light Mode</button>
+    <script src="lightMode.js"></script>
 </head>
 
-<body  style="background-color: black; color: white;">
-    <!--Create a PHP program that receives a number and displays a multiplication table from 1 to the
-number. You also need to print the row and column indexes in the table.-->
+<body>
+    <!--
+        Create a PHP program that receives a number and displays a multiplication table from 1 to the
+        number. You also need to print the row and column indexes in the table.
+    -->
     <h2>Multiplication Table Generator</h2>
     <form method="post">
         <label for="number">Enter a number: </label>

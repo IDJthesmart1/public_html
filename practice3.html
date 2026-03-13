@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab Six: Practice 3</title>
+    <button onclick="location.href='index.html'">Back to Index</button>
+    <button onclick="light_mode_toggle()">Toggle Light Mode</button>
+    <script src="lightMode.js"></script>
 </head>
 
-<body  style="background-color: black; color: white;">
-    <!--Create a JavaScript program that allows the user to enter a password two times to verify them. If
-the password is not at least eight characters long or if two passwords are different, alert the user.
-Otherwise, tell the user that two passwords are matched.-->
+<body>
+    <!--
+        Create a JavaScript program that allows the user to enter a password two times to verify them. If
+        the password is not at least eight characters long or if two passwords are different, alert the user.
+        Otherwise, tell the user that two passwords are matched.
+    -->
     <h2>Password Verification</h2>
     <label for="password1">Enter Password: </label>
     <input type="password" id="password1" placeholder="Enter password">
@@ -19,24 +24,7 @@ Otherwise, tell the user that two passwords are matched.-->
     <br><br>
     <button onclick="verifyPassword()">Verify Password</button>
 
-    <script>
-        function verifyPassword() {
-            const password1 = document.getElementById('password1').value;
-            const password2 = document.getElementById('password2').value;
-
-            if (password1.length < 8) {
-                alert("Password must be at least 8 characters long.");
-                return;
-            }
-
-            if (password1 !== password2) {
-                alert("Passwords do not match. Please try again.");
-                return;
-            }
-
-            alert("Passwords match! Your password has been set.");
-        }
-    </script>
+    <script src="practice3.js"></script>
 </body>
 
 </html>
